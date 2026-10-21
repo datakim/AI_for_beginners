@@ -15,7 +15,7 @@
 For every candidate next token, the model produces a score called a logit. Temperature is a positive number that those scores are divided by before they are turned into probabilities. Lowering it gives high scores an even bigger advantage; raising it shrinks the probability gaps between candidates.
 
 ```math
-p_i(T) = \frac{e^{z_i / T}}{\sum_j e^{z_j / T}}, \qquad T > 0
+p_i(T) = \frac{e^{z_i / T}}{\sum_j e^{z_j / T}}, \qquad T \gt 0
 ```
 
 **In plain words:** Divide the score of every candidate token by the temperature T. Turn the divided scores into positive numbers and divide by their total to get new probabilities. When T is small, the gaps between scores widen and more probability piles up on the high-scoring side; when T is large, the gaps shrink and the distribution flattens.

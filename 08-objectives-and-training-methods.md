@@ -14,7 +14,7 @@
 Pretraining and supervised fine-tuning (SFT) of an autoregressive LLM can use the same form of loss: one that raises the probability of the correct next token. The key difference is which data and which positions the training targets. SFT usually adjusts the model with examples of the responses you want.
 
 ```math
-L_{\text{SFT}} = -\frac{1}{|A|}\sum_{t \in A} \log p_\theta(y_t \mid x, y_{<t})
+L_{\text{SFT}} = -\frac{1}{|A|}\sum_{t \in A} \log p_\theta(y_t \mid x, y_{\lt t})
 ```
 
 **In plain words:** Show the model the prompt and the reference response up to the current point. Turn the probability the model gave to the next reference-response token into a penalty. Collect this penalty only at the response positions marked as training targets, and average it.

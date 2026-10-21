@@ -291,15 +291,15 @@ _Further reading: [S5 · Vaswani et al., *Attention Is All You Need*](references
 Look at what came before, predict the probabilities of the next piece, attach the chosen piece to what came before, and predict again: that is how a sentence keeps going. In training, the model practices next-token prediction at many positions in real sentences. One easy form of computation is applied over and over across many contexts.
 
 ```math
-L = -\frac{1}{T}\sum_{t=1}^{T} \log p_\theta(x_t \mid x_{<t})
+L = -\frac{1}{T}\sum_{t=1}^{T} \log p_\theta(x_t \mid x_{\lt t})
 ```
 
 **In plain words:** At each position, show the model the earlier tokens and get the probability of the actual next token. Put a minus sign in front of the log of that probability to make a penalty. Add up the penalties across positions and divide by the number of positions to get the average loss.
 
 ### Reading the symbols
 
-- **xₜ** and $x_{<t}$ ("x sub t" and "x before t": the next correct token and the context before it): xₜ is the actual token to predict now, and $x_{<t}$ is the tokens before it. The < marks the range "the earlier indices."
-- $p_\theta(x_t \mid x_{<t})$ ("p theta of x t given x before t", the probability given the preceding context): The vertical bar | does not mean division; it means "under this condition." θ is the parameters of the model that computes the probability.
+- **xₜ** and $x_{\lt t}$ ("x sub t" and "x before t": the next correct token and the context before it): xₜ is the actual token to predict now, and $x_{\lt t}$ is the tokens before it. The < marks the range "the earlier indices."
+- $p_\theta(x_t \mid x_{\lt t})$ ("p theta of x t given x before t", the probability given the preceding context): The vertical bar | does not mean division; it means "under this condition." θ is the parameters of the model that computes the probability.
 - **−log** ("minus log", turning the correct answer's probability into a penalty): This is the negative log from [Q10](03-classical-ml-and-evaluation.md#q10). The lower the probability given to the correct token, the bigger the penalty.
 - **Σₜ₌₁ᵀ** and **1/T** ("sum from t = 1 to T" and "one over T": the sum over positions and the average): Compute with t set to each position being evaluated, then divide by the total number of positions, T. For the starting position in training, a start token or a given context can be used.
 
